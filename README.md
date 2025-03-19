@@ -47,17 +47,18 @@ python3 -m venv .venv
 source .venv/bin/activate
 ```
 
+clone the repository 
+
+```bash
+git clone https://github.com/PranavU-Coder/file_organizer_script.git
+```
+
 installing the watchdog library
 
 ```bash
 pip install watchdog
 ```
 
-clone the repository 
-
-```bash
-git clone https://github.com/PranavU-Coder/file_organizer_script.git
-```
 
 ## Step 2 : Making Script executable
 
@@ -78,6 +79,7 @@ nano ~/.config/systemd/user/file-organizer.service
 ```
 
 once nano opens , write these lines :
+also please note , Replace USERNAME with your actual username
 
 ```text
 [Unit]
@@ -86,8 +88,6 @@ After=network.target
 
 [Service]
 Type=simple
-
-Replace USERNAME with your actual username
 
 ExecStart=/home/USERNAME/file_organizer_script/.venv/bin/python /home/USERNAME/file_organizer_script/main.py
 WorkingDirectory=/home/USERNAME/file_organizer_script
