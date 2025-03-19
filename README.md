@@ -33,8 +33,8 @@ and for larger files (>100 MB) : files aren't converted instantly but the transp
 # Installation Guide :-
 
 ## Pre-Requisites :
-- (1) Linux distribution with systemd (I use Ubuntu 24.04 LTS)
-- (2) Python 3.6+
+- Linux distribution with systemd (I use Ubuntu 24.04 LTS)
+- Python 3.6+
 
 ## Step 1 : Install Py-Dependencies
 
