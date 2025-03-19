@@ -40,17 +40,17 @@ and for larger files (>100 MB) : files aren't converted instantly but the transp
 
 copy all these bash commands into the command 
 
-this creates a virtual environment which is most reccomended for running this script
-
-```bash
-python3 -m venv .venv
-source .venv/bin/activate
-```
-
 clone the repository 
 
 ```bash
 git clone https://github.com/PranavU-Coder/file_organizer_script.git
+```
+
+then create a virtual environment which is most reccomended for running this script
+
+```bash
+python3 -m venv .venv
+source .venv/bin/activate
 ```
 
 installing the watchdog library
