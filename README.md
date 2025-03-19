@@ -43,8 +43,8 @@ copy all these bash commands into the command
 this creates a virtual environment which is most reccomended for running this script
 
 ```bash
-python3 -m venv ~/.venv/file-organizer
-source ~/.venv/file-organizer/bin/activate
+python3 -m venv .venv
+source .venv/bin/activate
 ```
 
 installing the watchdog library
@@ -52,3 +52,104 @@ installing the watchdog library
 ```bash
 pip install watchdog
 ```
+
+clone the repository 
+
+```bash
+git clone https://github.com/PranavU-Coder/file_organizer_script.git
+```
+
+## Step 2 : Making Script executable
+
+
+```bash
+chmod +x main.py
+```
+
+Edit file paths or add additional file extensions in main.py (go to line 45 of codefile)
+
+## Step 3 : Systemd Service
+
+create this systemd service file (very important for activation)
+
+```bash
+mkdir -p ~/.config/systemd/user/
+nano ~/.config/systemd/user/file-organizer.service
+```
+
+once nano opens , write these lines :
+
+```text
+[Unit]
+Description=File Organization Service
+After=network.target
+
+[Service]
+Type=simple
+
+Replace USERNAME with your actual username
+
+ExecStart=/home/USERNAME/file_organizer_script/.venv/bin/python /home/USERNAME/file_organizer_script/main.py
+WorkingDirectory=/home/USERNAME/file_organizer_script
+Environment=PYTHONUNBUFFERED=1
+Restart=on-failure
+RestartSec=5
+
+[Install]
+WantedBy=default.target
+```
+
+save the file and close nano
+after which reload systemd to recognize the new service
+
+```bash
+systemctl --user daemon-reload
+```
+
+## Step 4 : Final footsteps
+
+Create command aliases
+
+paste these lines in `~/.bashrc` :
+
+```text
+alias activate-organizer='systemctl --user start file-organizer.service && echo "File organizer activated!"'
+alias deactivate-organizer='systemctl --user stop file-organizer.service && echo "File organizer deactivated!"'
+```
+
+finally reload the bashrc
+
+```bash
+source ~/.bashrc
+```
+
+## Test Drive
+
+check if it works by running this command 
+```bash
+activate-organizer
+```
+
+similarly to stop
+```bash
+deactivate-organizer
+```
+you can check the status of the programme by 
+
+```bash
+systemctl --user status file-organizer.service
+```
+
+## Allowing it to run almost always
+
+add this command to terminal , this allows the script to run in background as soon as user logins to computer without having to manually activating the script
+
+```bash
+systemctl --user enable file-organizer.service
+```
+
+
+# Final Words
+
+If you found this project worth while or useful please star it , and contribute to src so it can be more efficient 
+took me a lot of time to work on this
