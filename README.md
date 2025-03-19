@@ -12,7 +12,7 @@ alright even for a layman , it is great to optimize your system in such a way th
 
 for small files (<20 KB) : 15-20 files per second
 for medium files (<10 MB) : 5-10 files per second
-for larger files (>100 MB) : files aren't converted instantly but the transportation is still quick
+and for larger files (>100 MB) : files aren't converted instantly but the transportation is still quick
 
 ## What's so good about this ?
 
